@@ -1,0 +1,11 @@
+steps:
+  # Docker Build
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 
+           'gcr.io/ringed-robot-349322/my-nginx:latest', 
+           '.']
+
+  # Docker Push
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 
+           'gcr.io/ringed-robot-349322/my-nginx:latest']
