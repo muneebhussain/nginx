@@ -10,6 +10,6 @@ steps:
     args:
       - apply
       - --filename=gs://ring-robot-nginx-deployment/deployment.yaml
-      - --image=gcr.io/ringed-robot-349322/my-nginx:latest
+      - --namespace=default
       - --location=us-central1-c
       - --cluster=cluster-2
