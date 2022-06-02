@@ -9,18 +9,18 @@ steps:
     id: Prepare Account Service Kubernetes YAML
     args:
       - prepare
-      - '--filename=gs://ring-robot-nginx-deployment/deployment.yaml'
+      - '--filename=gs://xyz-deploy/deployment.yaml'
       - '--image=gcr.io/ringed-robot-349322/my-nginx:latest'
       - '--app=frontend'
       - '--version=latest'
       - '--namespace=xyz'
-      - '--output=gs://ring-robot-nginx-deployment/ouput'
+      - '--output=gs://xyz-deploy/ouput'
       - '--annotation=gcb-build-id=$BUILD_ID'
   - name: gcr.io/cloud-builders/gke-deploy
     id: Deploy Account Service in K8s
     args:
       - apply
-      - '--filename=gs://ring-robot-nginx-deployment/ouput/expanded/*'
+      - '--filename=gs://xyz-deploy/ouput/expanded/*'
       - '--namespace=xyz'
-      - '--cluster=cluster-2'
+      - '--cluster=cluster-3'
       - '--location=us-central1-c'
