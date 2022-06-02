@@ -8,7 +8,7 @@ steps:
   - name: "gcr.io/cloud-builders/gke-deploy"
     id: deploy Step
     args:
-      - run
+      - apply
       - --filename=gs://ring-robot-nginx-deployment/deployment.yaml
       - --image=gcr.io/ringed-robot-349322/my-nginx:latest
       - --location=us-central1-c
