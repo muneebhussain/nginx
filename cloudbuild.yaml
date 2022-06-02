@@ -1,11 +1,14 @@
 steps:
-  # Docker Build
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 
-           'gcr.io/ringed-robot-349322/my-nginx:latest', 
-           '.']
-
-  # Docker Push
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 
-           'gcr.io/ringed-robot-349322/my-nginx:latest']
+  - name: "gcr.io/cloud-builders/docker"
+    id: build Step
+    args: ["build", "-t", "gcr.io/ringed-robot-349322/my-nginx:latest", "."]
+  - name: "gcr.io/cloud-builders/docker"
+    id: push Step
+    args: ["push", "gcr.io/ringed-robot-349322/my-nginx:latest"]
+  - name: "gcr.io/cloud-builders/gke-deploy"
+    id: deploy Step
+    args:
+      - run
+      - --filename=gs://ring-robot-nginx-deployment/deployment.yaml
+      - --location=us-central1-c
+      - --cluster=cluster-2
