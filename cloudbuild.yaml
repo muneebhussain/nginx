@@ -1,26 +1,32 @@
 steps:
-  - name: "gcr.io/cloud-builders/docker"
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - '-t'
+      - 'gcr.io/ringed-robot-349322/my-nginx:$SHORT_SHA'
+      - .
     id: build Step
-    args: ["build", "-t", "gcr.io/ringed-robot-349322/my-nginx:latest", "."]
-  - name: "gcr.io/cloud-builders/docker"
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - 'gcr.io/ringed-robot-349322/my-nginx:$SHORT_SHA'
     id: push Step
-    args: ["push", "gcr.io/ringed-robot-349322/my-nginx:latest"]
   - name: gcr.io/cloud-builders/gke-deploy
-    id: Prepare Account Service Kubernetes YAML
     args:
       - prepare
       - '--filename=gs://xyz-deploy/deployment.yaml'
-      - '--image=gcr.io/ringed-robot-349322/my-nginx:latest'
+      - '--image=gcr.io/ringed-robot-349322/my-nginx:$SHORT_SHA'
       - '--app=frontend'
-      - '--version=latest'
+      - '--version=$SHORT_SHA'
       - '--namespace=xyz'
       - '--output=gs://xyz-deploy/ouput'
       - '--annotation=gcb-build-id=$BUILD_ID'
+    id: Prepare Account Service Kubernetes YAML
   - name: gcr.io/cloud-builders/gke-deploy
-    id: Deploy Account Service in K8s
     args:
       - apply
       - '--filename=gs://xyz-deploy/ouput/expanded/*'
       - '--namespace=xyz'
       - '--cluster=cluster-3'
       - '--location=us-central1-c'
+    id: Deploy Account Service in K8s
