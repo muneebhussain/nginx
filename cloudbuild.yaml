@@ -20,7 +20,7 @@ steps:
       - '--image=gcr.io/marshad-sc-lab/my-nginx:$SHORT_SHA'
       - '--app=frontend'
       - '--version=$SHORT_SHA'
-      - '--namespace=xyz'
+      - '--namespace=staging'
       - '--output=gs://nginx-cicd/ouput'
       - '--annotation=gcb-build-id=$BUILD_ID'
     # Deploying the Build to K8s
