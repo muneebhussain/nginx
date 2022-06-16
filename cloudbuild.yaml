@@ -16,7 +16,7 @@ steps:
   - name: gcr.io/cloud-builders/gke-deploy
     args:
       - prepare
-      - '--filename=gs://nginx-cicd/deployment.yaml'
+      - '--filename=deployment.yaml'
       - '--image=gcr.io/marshad-sc-lab/my-nginx:$SHORT_SHA'
       - '--app=frontend'
       - '--version=$SHORT_SHA'
