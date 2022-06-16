@@ -25,7 +25,7 @@ kind: Service
 metadata:
   name: frontend
   labels:
-    run: frontend
+    app: frontend
 spec:
   ports:
   - name: http
@@ -33,4 +33,4 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    run: frontend
+    app: frontend
