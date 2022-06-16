@@ -23,12 +23,13 @@ steps:
       - '--namespace=xyz'
       - '--output=gs://nginx-cicd/ouput'
       - '--annotation=gcb-build-id=$BUILD_ID'
-    id: Prepare Account Service Kubernetes YAML
+    # Deploying the Build to K8s
+    id: Deploying Build
   - name: gcr.io/cloud-builders/gke-deploy
     args:
       - apply
       - '--filename=gs://nginx-cicd/ouput/expanded/*'
-      - '--namespace=default'
+      - '--namespace=staging'
       - '--cluster=cluster-1'
       - '--location=us-central1-c'
     id: Deploy Account Service in K8s
