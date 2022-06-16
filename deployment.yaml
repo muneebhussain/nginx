@@ -33,4 +33,5 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    app: frontend
+    matchLabels:
+      app: frontend
