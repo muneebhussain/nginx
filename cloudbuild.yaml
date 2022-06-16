@@ -21,14 +21,14 @@ steps:
       - '--app=frontend'
       - '--version=$SHORT_SHA'
       - '--namespace=prod'
-      - '--output=gs://nginx-cicd/ouput'
+      - '--output=gs://nginx-cicd/prod/ouput'
       - '--annotation=gcb-build-id=$BUILD_ID'
     # Deploying the Build to K8s
     id: Deploying Build
   - name: gcr.io/cloud-builders/gke-deploy
     args:
       - apply
-      - '--filename=gs://nginx-cicd/ouput/expanded/*'
+      - '--filename=gs://nginx-cicd/prod/expanded/*'
       - '--namespace=prod'
       - '--cluster=cluster-1'
       - '--location=us-central1-c'
