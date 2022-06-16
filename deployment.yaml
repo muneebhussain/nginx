@@ -17,9 +17,11 @@ spec:
       containers:
       - name: frontend
         image: gcr.io/marshad-sc-lab/my-nginx
+        ports:
+        - containerPort: 80
 ---
 apiVersion: v1
-kind: frontend
+kind: Service
 metadata:
   name: frontend
   labels:
