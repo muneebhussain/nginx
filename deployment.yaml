@@ -16,4 +16,4 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: gcr.io/ringed-robot-349322/my-nginx
+        image: gcr.io/marshad-sc-lab/my-nginx
