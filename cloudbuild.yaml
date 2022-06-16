@@ -28,7 +28,7 @@ steps:
     args:
       - apply
       - '--filename=gs://nginx-cicd/ouput/expanded/*'
-      - '--namespace=xyz'
+      - '--namespace=default'
       - '--cluster=cluster-1'
       - '--location=us-central1-c'
     id: Deploy Account Service in K8s
