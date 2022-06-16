@@ -1,11 +1,12 @@
 steps:
-  #Docker Build
+  # This step builds the container image.
   - name: gcr.io/cloud-builders/docker
     args:
       - build
       - '-t'
       - 'gcr.io/marshad-sc-lab/my-nginx:$SHORT_SHA'
       - .
+    # This step pushes the image to Artifact Registry
     id: build Step
   - name: gcr.io/cloud-builders/docker
     args:
